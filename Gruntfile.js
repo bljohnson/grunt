@@ -33,7 +33,17 @@ module.exports = function(grunt) {
 					'dist/css/pretty.css': 'src/css/pretty.less'
 				}
 			}
-		} // end LESS config
+		}, // end LESS config
+		cssmin: {
+			options: {
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+			},
+			build: {
+				files: {
+					'dist/css/style.min.css': 'src/css/style.css'
+				}
+			}
+		} // end cssmin config
 	});
 	/////////////////////////////////
 	// load Grunt plugins //

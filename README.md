@@ -23,3 +23,4 @@ https://scotch.io/tutorials/a-simple-guide-to-getting-started-with-grunt
 	* `grunt jshint`
 	* `grunt uglify`
 	* `grunt less`
+	* `grunt cssmin`
