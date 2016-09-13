@@ -1,8 +1,8 @@
 // wrapper function (required by Grunt and its plugins) - all configuration goes inside this function
 module.exports = function(grunt) {
-	/////////////////////////////
-	// configure Grunt //
-	/////////////////////////////
+	///////////////////////////////////
+	// CONFIGURE GRUNT //
+	///////////////////////////////////
 	grunt.initConfig({
 		// get configuration info from package.json so we can use things like name and version
 		// saves package.json info to pkg - call name of project with pkg.name, version of project with pkg.version
@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 			// ** for all folders and * for all files
 			build: ['Gruntfile.js', 'src/**/*.js']
 		}, // end jshint config
+
 		uglify: {
 			options: {
 				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n' // adds comment to top of minified file
@@ -27,6 +28,7 @@ module.exports = function(grunt) {
 				}
 			}
 		}, // end uglify config
+
 		less: {
 			build: {
 				files: {
@@ -34,6 +36,7 @@ module.exports = function(grunt) {
 				}
 			}
 		}, // end LESS config
+
 		cssmin: {
 			options: {
 				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
@@ -43,15 +46,22 @@ module.exports = function(grunt) {
 					'dist/css/style.min.css': 'src/css/style.css'
 				}
 			}
-		} // end cssmin config
+		}, // end cssmin config
 	});
-	/////////////////////////////////
-	// load Grunt plugins //
-	/////////////////////////////////
+
+	////////////////////////////////////////
+	// LOAD GRUNT PLUGINS //
+	///////////////////////////////////////
 	// can only load these if they're in package.json - make sure to run npm install so app can find these
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+
+	/////////////////////////////
+	// CREATE TASKS //
+	////////////////////////////
+	// run multiple tasks at once by creating task of default - allows you to simply run 'grunt' from command line
+	grunt.registerTask('default', ['jshint', 'uglify', 'cssmin', 'less']);
 };
