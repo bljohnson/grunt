@@ -23,9 +23,17 @@ module.exports = function(grunt) {
 			bulid: {
 				files: {
 					'dist/js/magic.min.js': 'src/js/magic.js' // create minified file in dist from file in src
+					// minify multiple files into one with 'dist/js/magic.min/js': ['src/js/magic.js', 'src/js/magic2.js'] OR 'dist/js/magic.min.js': 'src/**/*.js'
 				}
 			}
-		}
+		}, // end uglify config
+		less: {
+			build: {
+				files: {
+					'dist/css/pretty.css': 'src/css/pretty.less'
+				}
+			}
+		} // end LESS config
 	});
 	/////////////////////////////////
 	// load Grunt plugins //
