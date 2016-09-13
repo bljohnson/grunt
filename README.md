@@ -53,3 +53,4 @@ https://scotch.io/tutorials/a-simple-guide-to-getting-started-with-grunt
 	* `grunt` (runs everything within 'default' task)
 	* `grunt dev` (only run dev config)
 	* `grunt production` (only run production config)
+	* `grunt watch`

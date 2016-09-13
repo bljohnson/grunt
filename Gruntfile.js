@@ -47,6 +47,17 @@ module.exports = function(grunt) {
 				}
 			}
 		}, // end cssmin config
+
+		watch: { // separate into stylesheets and scripts to use different tasks for each
+			stylesheets: {
+				files: ['src/**/*.css', 'src/**/*.less'],
+				tasks: ['less', 'cssmin']
+			},
+			scripts: {
+				files: 'src/**/*.js',
+				tasks: ['jshint', 'uglify']
+			}
+		} // end watch config
 	});
 
 	////////////////////////////////////////
