@@ -8,7 +8,13 @@ module.exports = function(grunt) {
 		// saves package.json info to pkg - call name of project with pkg.name, version of project with pkg.version
 		pkg: grunt.file.readJSON('package.json'),
 		// all configuratino will go here
-
+		jshint: {
+			options: {
+				reporter: require('jshint-stylish') // make errors look/read nice
+			},
+			// when this task is run, lint the Gruntfile and all js files in src
+			build: ['Gruntfile.js', 'src/**/*.js']
+		}
 	});
 	/////////////////////////////////
 	// load Grunt plugins //
