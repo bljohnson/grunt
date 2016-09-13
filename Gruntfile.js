@@ -7,13 +7,24 @@ module.exports = function(grunt) {
 		// get configuration info from package.json so we can use things like name and version
 		// saves package.json info to pkg - call name of project with pkg.name, version of project with pkg.version
 		pkg: grunt.file.readJSON('package.json'),
-		// all configuratino will go here
+		// all configuration will go here
 		jshint: {
 			options: {
 				reporter: require('jshint-stylish') // make errors look/read nice
 			},
 			// when this task is run, lint the Gruntfile and all js files in src
+			// ** for all folders and * for all files
 			build: ['Gruntfile.js', 'src/**/*.js']
+		}, // end jshint config
+		uglify: {
+			options: {
+				banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n' // adds comment to top of minified file
+			},
+			bulid: {
+				files: {
+					'dist/js/magic.min.js': 'src/js/magic.js' // create minified file in dist from file in src
+				}
+			}
 		}
 	});
 	/////////////////////////////////
