@@ -19,8 +19,37 @@ https://scotch.io/tutorials/a-simple-guide-to-getting-started-with-grunt
 	2. Set options if needed (usually found on the docs for each package).
 	3. Create a build attribute and pass in files, directories, or anything else you want.
 
+* Different tasks for different environments (e.g. development and production)
+	* Can define multiple tasks inside of each configuration in Gruntfile.js:
+	```
+	// configure uglify to minify js files
+	uglify: {
+		options: {
+			banner: '/\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n/\n'
+		},
+		dev: {
+			files: { 'dist/js/magic.min.js': ['src/js/magic.js', 'src/js/magic2.js'] }
+		},
+		production: {
+			 files: { 'dist/js/magic.min.js': 'src/**/*.js' }
+		}
+	}
+	```
+	* Create tasks for development and production in Gruntfile.js:
+	```
+	// this task will only run the dev configuration
+	grunt.registerTask('dev', ['jshint:dev', 'uglify:dev', 'cssmin:dev', 'less:dev']);
+
+	// only run production configuration
+	grunt.registerTask('production', ['jshint:production', 'uglify:production', 'cssmin:production', 'less:production']);
+	```
+	* Call development or production by running `grunt dev` or `grunt production` in the command line
+
 * Command line commands:
 	* `grunt jshint`
 	* `grunt uglify`
 	* `grunt less`
 	* `grunt cssmin`
+	* `grunt` (runs everything within 'default' task)
+	* `grunt dev` (only run dev config)
+	* `grunt production` (only run production config)
